@@ -1,9 +1,5 @@
 node_modules/
 .env
 
-# docker
-docker-compose.yml
-Dockerfile
-
 # db
 postgres/

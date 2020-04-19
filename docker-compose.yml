@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+  node:
+    build: .
+    image: api-denuncia:1.0
+    command: yarn dev
+    volumes:
+      -  .:/usr/app/
+      - /usr/app/node_modules
+    ports: 
+      - "3333:3333"
+    depends_on:
+      - db
