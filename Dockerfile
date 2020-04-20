@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:12.16.2
 
 WORKDIR /usr/app
 
@@ -10,6 +10,6 @@ COPY yarn.lock .
 RUN yarn install
 
 #copy all file to "." -> /usr/app
-COPY . .
+COPY . /usr/app
 
 EXPOSE 3333
