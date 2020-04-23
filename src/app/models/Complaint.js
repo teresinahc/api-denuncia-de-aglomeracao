@@ -4,17 +4,23 @@ class Complaint extends Model {
   static init(sequelize) {
     super.init(
       {
+        description: Sequelize.STRING,
         date_time: Sequelize.STRING,
         address: Sequelize.STRING,
         lat: Sequelize.STRING,
         long: Sequelize.STRING,
+        completed: Sequelize.BOOLEAN,
         category: Sequelize.STRING,
-        status: Sequelize.STRING,
-        created_at: Sequelize.DATE,
-        updated_at: Sequelize.DATE,
       },
       { sequelize }
     );
+  }
+
+  static associate(models) {
+    this.hasMany(models.File, {
+      foreignKey: 'photo_id',
+      as: 'photo',
+    });
   }
 }
 
