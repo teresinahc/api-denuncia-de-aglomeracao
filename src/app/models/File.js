@@ -16,6 +16,13 @@ class File extends Model {
       { sequelize }
     );
   }
+
+  static associate(models) {
+    this.belongsTo(models.Complaint, {
+      foreignKey: 'complaint_id',
+      as: 'complaint',
+    });
+  }
 }
 
 export default File;
