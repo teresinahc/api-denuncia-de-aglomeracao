@@ -5,7 +5,8 @@ import databaseConfig from '../config/database';
 import File from '../app/models/File';
 import Complaint from '../app/models/Complaint';
 
-const models = [File, Complaint]; // add other models here
+// Add other models here v
+const models = [File, Complaint];
 
 class Database {
   constructor() {
