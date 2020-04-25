@@ -11,6 +11,10 @@ const upload = multer(multerConfig);
 
 routes.get('/complaints', ComplaintController.index);
 routes.post('/complaints', ComplaintController.create);
+routes.delete('/complaints/:id', ComplaintController.delete);
+
+// TODO: route to list completed complaints
+// TODO: delete complaint route
 
 routes.post('/file', upload.single('file'), FileController.store);
 

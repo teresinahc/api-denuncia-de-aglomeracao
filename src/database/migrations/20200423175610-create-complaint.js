@@ -7,9 +7,13 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       description: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       date_time: {
         type: Sequelize.DATE,

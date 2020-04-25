@@ -8,12 +8,11 @@ class ComplaintController {
       },
     });
 
-    if (!complaints) {
-      res.status(404).json({
-        message: 'has not complaints',
+    if (complaints.length === 0) {
+      return res.status(404).json({
+        message: 'There is no complaints :(',
       });
     }
-
     return res.json(complaints);
   }
 
@@ -22,7 +21,7 @@ class ComplaintController {
 
     // {
     //   "description": "string",
-    //   "dateTime": "2304/2020",
+    //   "date_time": "2020-04-23T16:00:00.000Z",
     //   "address": "Endereço 01",
     //   "lat": "120000",
     //   "long": "13333",
@@ -31,9 +30,23 @@ class ComplaintController {
     //   "photo_id": 1,
     // }
 
-    const complaint = await Complaint.create(req.body);
+    Complaint.create(req.body)
+      .then((response) => {
+        res.json(response);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  }
 
-    res.json(complaint);
+  // TODO: add a middleware
+  delete(req, res) {
+    const { id } = req.params;
+    Complaint.destroy({
+      where: {
+        id,
+      },
+    }).then(() => res.json('Complaint deleted successfully'));
   }
 }
 
